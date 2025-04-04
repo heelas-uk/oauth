@@ -1,12 +1,13 @@
+import random
 import streamlit as st
+import string
 
-def login_screen():
-    st.header("This app is private.")
-    st.subheader("Please log in.")
-    st.button("Log in with Microsoft", on_click=st.login)
+st.title("Password generator")
+characters = string.ascii_letters + string.digits + string.punctuation
 
-if not st.experimental_user.is_logged_in:
-    login_screen()
-else:
-    st.header(f"Welcome, {st.experimental_user.name}!")
-    st.button("Log out", on_click=st.logout)
+num = int(st.number_input("Enter how long you want your pass to be", step=1))
+
+password = ''.join(random.choices(characters, k=num))
+st.write("Here is your password")
+
+st.write(password)
